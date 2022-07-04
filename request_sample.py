@@ -10,6 +10,10 @@
 import sys, os, base64, datetime, hashlib, hmac,json
 import requests # pip install requests
 
+from dotenv import load_dotenv
+
+load_dotenv()  # take environment variables from .env.
+import os
 
 def trans(text,language):
     # ************* REQUEST VALUES *************
@@ -51,11 +55,10 @@ def trans(text,language):
     # Python can read the AWS access key from environment variables or the configuration file.
     # In this example, keys are stored in environment variables. As a best practice, do not
     # embed credentials in code.
-    # access_key = os.environ.get('AKIA3FE4RSXNAGCXHVEQ')
-    # secret_key = os.environ.get('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')
 
-    access_key = 'AKIA3FE4RSXNAGCXHVEQ'
-    secret_key = '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'
+
+    access_key = os.getenv('ACCESS_KEY')
+    secret_key = os.getenv('SECRET_KEY')
     if access_key is None or secret_key is None:
         print('No access key is available.')
         sys.exit()
